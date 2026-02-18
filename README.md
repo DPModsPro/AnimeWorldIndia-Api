@@ -411,16 +411,27 @@ npm run lint
 
 ISC License - See [LICENSE](LICENSE) file for details.
 
-## Author
+## ❤️ Support & Community
 
-**Basirul Akhlak Borno**
+* ⭐ **Star this repository:** If you find this API helpful, please give it a star on GitHub to support the development!
 
-- Website: https://basirulakhlak.tech/
-- GitHub: https://github.com/basirulakhlakborno
+* 📢 **Join our Community:** Get updates and support on our official Telegram channel.
+  [Join SagaBox App on Telegram](https://t.me/SagaBox_app)
 
-## Copyright
+* 🌐 **Developer Portfolio:** Check out more projects and information at my official website.
+  [Visit basirulakhlak.tech](https://basirulakhlak.tech/)
 
-Copyright (c) 2026 Basirul Akhlak Borno. All Rights Reserved.
+---
+
+**Author:** Basirul Akhlak Borno
+* **GitHub:** [@basirulakhlakborno](https://github.com/basirulakhlakborno)
+* **Website:** [https://basirulakhlak.tech/](https://basirulakhlak.tech/)
+
+---
+
+**Copyright (c) 2026 Basirul Akhlak Borno. All Rights Reserved.**
+Distributed under the **ISC License**. See `LICENSE` for details.
+
 
 ## Disclaimer
 
