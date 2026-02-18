@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>403 - Forbidden | AniBiee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background-image: url('/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(0, 0, 0, 0.3) 1px, transparent 1px);
+            background-size: 8px 8px;
+            z-index: 1;
+            mix-blend-mode: overlay;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 30px;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+
+        .error-code {
+            font-size: 100px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 10px;
+            color: #ff4d4d;
+            text-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .usage-hint {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: left;
+            margin-bottom: 20px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .usage-hint h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #3b82f6;
+        }
+
+        .usage-hint code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: #fbbf24;
+            display: block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px;
+            margin-top: 5px;
+            border-radius: 4px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .disclaimer {
+            position: fixed;
+            bottom: 60px;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer a { color: #fff; text-decoration: none; }
+
+        @media (max-width: 600px) {
+            .error-code { font-size: 70px; }
+            .content { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="error-code">403</div>
+        <h1 class="title">Access Forbidden</h1>
+        <p class="description">Security protocols are blocking this request. Your <b>Origin</b> or <b>Referer</b> header is missing or not authorized to access the AniBiee API.</p>
+
+        <div class="usage-hint">
+            <h3>How to fix this?</h3>
+            <p style="font-size: 11px; color: rgba(255,255,255,0.6);">Ensure your request includes a valid Origin header:</p>
+            <code>Headers: { "Origin": "https://your-allowed-domain.com" }</code>
+        </div>
+
+        <div class="action-btns">
+            <a href="/" class="btn btn-primary">API Documentation</a>
+            <a href="https://basirulakhlak.tech/" target="_blank" class="btn btn-outline">Contact Admin</a>
+        </div>
+    </div>
+
+    <p class="disclaimer">⚠️ Legal Disclaimer: This API is provided for educational and research purposes only. Users are responsible for ensuring their use complies with all applicable copyright laws. The developers do not endorse or facilitate piracy. Use responsibly.</p>
+    
+    <footer class="footer">
+        Built by <a href="https://basirulakhlak.tech/" target="_blank">Basirul Akhlak Borno</a>
+    </footer>
+</body>
+</html>

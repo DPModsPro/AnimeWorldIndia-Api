@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>AniBiee | API Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background-image: url('/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Google Sans', sans-serif;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle, rgba(0, 0, 0, 0.3) 1px, transparent 1px);
+            background-size: 8px 8px;
+            z-index: 1;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .main-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .content-header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .favicon-logo {
+            width: 65px;
+            height: 65px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+        }
+
+        .title { font-size: 36px; font-weight: 700; margin-bottom: 10px; }
+        .description { font-size: 14px; color: rgba(255, 255, 255, 0.8); line-height: 1.6; }
+
+        /* --- API Card Container --- */
+        .api-container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 25px 0 15px;
+            color: #60a5fa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before { content: ''; width: 4px; height: 18px; background: #60a5fa; border-radius: 10px; }
+
+        /* --- Endpoint Card Styling --- */
+        .endpoint-card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .endpoint-card:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            transform: translateX(5px);
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .method {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #10b981;
+            color: #064e3b;
+            margin-right: 12px;
+        }
+
+        .url-path {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: #fde047;
+        }
+
+        .api-info {
+            display: block;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .example-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 11px;
+            color: #60a5fa;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        .example-link:hover { text-decoration: underline; opacity: 1; }
+
+        /* --- Implementation Guide --- */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .guide-card h4 { font-size: 14px; margin-bottom: 10px; color: #fff; }
+        .guide-card p { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+        /* --- Footer & Misc --- */
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: 0.3s;
+        }
+        .github-btn:hover { background: rgba(255,255,255,0.2); }
+
+        .used-by { margin-top: 40px; text-align: center; }
+        .used-by-label { font-size: 10px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+        .website-icon { width: 50px; filter: grayscale(100%); transition: 0.3s; margin-top: 10px; }
+        .website-icon:hover { filter: grayscale(0%); transform: scale(1.1); }
+
+        .disclaimer { font-size: 9px; color: rgba(255,255,255,0.4); text-align: center; padding: 40px 20px 20px; max-width: 800px; line-height: 1.5; }
+        .footer { font-size: 12px; color: rgba(255,255,255,0.6); text-align: center; padding-bottom: 30px; }
+        .footer a { color: #fff; text-decoration: none; font-weight: 500; }
+
+        @media (max-width: 768px) {
+            .guide-grid { grid-template-columns: 1fr; }
+            .title { font-size: 28px; }
+            .api-container { padding: 20px; }
+            .url-path { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <header class="content-header">
+            <img src="/favicon.png" alt="AniBiee Logo" class="favicon-logo">
+            <h1 class="title">AniBiee API</h1>
+            <p class="description">A complete RESTful solution for AnimeWorldIndia data. Fast, reliable, and developer-friendly.</p>
+            <a href="https://github.com/basirulakhlakborno/animeworldindia-scraper" target="_blank" class="github-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                Documentation Repo
+            </a>
+        </header>
+
+        <div class="api-container">
+            <div class="section-title">Discovery Endpoints</div>
+            
+            <div class="endpoint-card">
+                <span class="method">GET</span><span class="url-path">/api/home</span>
+                <p class="api-info">Get trending, newest drops, and movies list for the landing page.</p>
+            </div>
+
+            <div class="endpoint-card">
+                <span class="method">GET</span><span class="url-path">/api/category/{type}?page={n}</span>
+                <p class="api-info">Browse categories (movies, series, genre/action, language/hindi).</p>
+                <a href="/api/category/movies?page=1" class="example-link">Example: /api/category/movies?page=1</a>
+            </div>
+
+            <div class="section-title">Content Details</div>
+
+            <div class="endpoint-card">
+                <span class="method">GET</span><span class="url-path">/api/info/{id}</span>
+                <p class="api-info">Get detailed info, description, and episodes list of a specific title.</p>
+                <a href="/api/info/spy-x-family" class="example-link">Example: /api/info/spy-x-family</a>
+            </div>
+
+            <div class="endpoint-card">
+                <span class="method">GET</span><span class="url-path">/api/episodes/{id}/{season}</span>
+                <p class="api-info">Fetch all episodes for a specific season of a series.</p>
+            </div>
+
+            <div class="section-title">Streaming & Tools</div>
+
+            <div class="endpoint-card">
+                <span class="method">GET</span><span class="url-path">/api/embed/{episodeId}</span>
+                <p class="api-info">Get player server links (Play, Abyss, etc.) for streaming.</p>
+            </div>
+
+            <div class="endpoint-card">
+                <span class="method" style="background: #f59e0b;">GET</span><span class="url-path">/api/scrape?url={targetUrl}</span>
+                <p class="api-info">Generic scraper to extract data from any supported URL.</p>
+            </div>
+
+            <div class="endpoint-card">
+                <span class="method" style="background: #3b82f6;">GET</span><span class="url-path">/api/health</span>
+                <p class="api-info">Check server uptime and API status.</p>
+            </div>
+
+            <div class="guide-grid">
+                <div class="guide-card">
+                    <h4>🔒 Security Headers</h4>
+                    <p>Unless <code>CORS_ORIGIN=*</code>, all requests require a valid <code>Origin</code> or <code>Referer</code> header matching your configuration.</p>
+                </div>
+                <div class="guide-card">
+                    <h4>🚦 Rate Limiting</h4>
+                    <p>Standard protection: 100 requests per 15 minutes per IP address to ensure stability.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="used-by">
+            <p class="used-by-label">Powering Next-Gen Apps</p>
+            <a href="https://anizen.tr/home" target="_blank"><img src="/user1.png" alt="Anizen" class="website-icon"></a>
+        </div>
+
+        <p class="disclaimer">
+            [attachment_0](attachment)
+            ⚠️ LEGAL DISCLAIMER: This API is for educational and research purposes only. Users are responsible for copyright compliance. Developers do not endorse piracy.
+        </p>
+
+        <footer class="footer">
+            Developed by <a href="https://basirulakhlak.tech/" target="_blank">Basirul Akhlak Borno</a> | © 2026 AniBiee
+        </footer>
+    </div>
+</body>
+</html>
